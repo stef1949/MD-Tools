@@ -14,6 +14,12 @@
 		35FFF5A42C5560BD0075490F /* MD_ToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5A32C5560BD0075490F /* MD_ToolsTests.swift */; };
 		35FFF5AE2C5560BD0075490F /* MD_ToolsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5AD2C5560BD0075490F /* MD_ToolsUITests.swift */; };
 		35FFF5B02C5560BD0075490F /* MD_ToolsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5AF2C5560BD0075490F /* MD_ToolsUITestsLaunchTests.swift */; };
+		35FFF5C32C5564F30075490F /* MetalKitViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5C22C5564F30075490F /* MetalKitViewRepresentable.swift */; };
+		35FFF5C52C5565BD0075490F /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5C42C5565BD0075490F /* Renderer.swift */; };
+		35FFF5C72C55692A0075490F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5C62C55692A0075490F /* Shaders.metal */; };
+		35FFF5C92C556E040075490F /* PDBUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5C82C556E040075490F /* PDBUtils.swift */; };
+		35FFF5CB2C557A7E0075490F /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5CA2C557A7E0075490F /* FileHelper.swift */; };
+		35FFF5CD2C557B0D0075490F /* PDBViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FFF5CC2C557B0D0075490F /* PDBViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,12 @@
 		35FFF5A92C5560BD0075490F /* MD ToolsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MD ToolsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FFF5AD2C5560BD0075490F /* MD_ToolsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD_ToolsUITests.swift; sourceTree = "<group>"; };
 		35FFF5AF2C5560BD0075490F /* MD_ToolsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD_ToolsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		35FFF5C22C5564F30075490F /* MetalKitViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalKitViewRepresentable.swift; sourceTree = "<group>"; };
+		35FFF5C42C5565BD0075490F /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		35FFF5C62C55692A0075490F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		35FFF5C82C556E040075490F /* PDBUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDBUtils.swift; sourceTree = "<group>"; };
+		35FFF5CA2C557A7E0075490F /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		35FFF5CC2C557B0D0075490F /* PDBViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDBViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +108,16 @@
 			isa = PBXGroup;
 			children = (
 				35FFF5912C5560BB0075490F /* MD_ToolsApp.swift */,
+				35FFF5C22C5564F30075490F /* MetalKitViewRepresentable.swift */,
+				35FFF5C42C5565BD0075490F /* Renderer.swift */,
+				35FFF5C82C556E040075490F /* PDBUtils.swift */,
 				35FFF5932C5560BB0075490F /* ContentView.swift */,
+				35FFF5CC2C557B0D0075490F /* PDBViewModel.swift */,
+				35FFF5CA2C557A7E0075490F /* FileHelper.swift */,
 				35FFF5952C5560BC0075490F /* Assets.xcassets */,
 				35FFF59A2C5560BC0075490F /* MD_Tools.entitlements */,
 				35FFF5972C5560BC0075490F /* Preview Content */,
+				35FFF5C62C55692A0075490F /* Shaders.metal */,
 			);
 			path = "MD Tools";
 			sourceTree = "<group>";
@@ -259,8 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FFF5C92C556E040075490F /* PDBUtils.swift in Sources */,
+				35FFF5C52C5565BD0075490F /* Renderer.swift in Sources */,
 				35FFF5942C5560BB0075490F /* ContentView.swift in Sources */,
+				35FFF5C32C5564F30075490F /* MetalKitViewRepresentable.swift in Sources */,
 				35FFF5922C5560BB0075490F /* MD_ToolsApp.swift in Sources */,
+				35FFF5CB2C557A7E0075490F /* FileHelper.swift in Sources */,
+				35FFF5C72C55692A0075490F /* Shaders.metal in Sources */,
+				35FFF5CD2C557B0D0075490F /* PDBViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

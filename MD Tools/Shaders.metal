@@ -18,10 +18,19 @@ struct VertexOut {
     float4 color;
 };
 
-vertex VertexOut vertexShader(VertexIn in [[stage_in]]) {
+vertex VertexOut vertexShader(VertexIn in [[stage_in]],
+                              constant float4x4 &modelViewProjection [[buffer(1)]]) {
     VertexOut out;
-    out.position = in.position;
+
+    // Apply the model-view-projection matrix to the position
+    out.position = modelViewProjection * in.position;
+
+    // Pass the color through
     out.color = in.color;
+
+    // Set point size (if rendering atoms as points)
+    out.position.w = 10.0; // Example: Set size to 10 pixels
+
     return out;
 }
 

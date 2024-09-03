@@ -8,6 +8,8 @@
 import MetalKit
 
 typealias float4 = SIMD4<Float>
+typealias float3 = SIMD3<Float>
+
 class Renderer: NSObject, MTKViewDelegate {
     var device: MTLDevice!
     var commandQueue: MTLCommandQueue!
@@ -40,10 +42,10 @@ class Renderer: NSObject, MTKViewDelegate {
 
         // Set up the vertex descriptor
         let vertexDescriptor = MTLVertexDescriptor()
-        vertexDescriptor.attributes[0].format = .float4
+        vertexDescriptor.attributes[0].format = .float4 // Position
         vertexDescriptor.attributes[0].offset = 0
         vertexDescriptor.attributes[0].bufferIndex = 0
-        vertexDescriptor.attributes[1].format = .float4
+        vertexDescriptor.attributes[1].format = .float4 //Colour
         vertexDescriptor.attributes[1].offset = MemoryLayout<SIMD4<Float>>.stride
         vertexDescriptor.attributes[1].bufferIndex = 0
         vertexDescriptor.layouts[0].stride = MemoryLayout<SIMD4<Float>>.stride * 2
@@ -77,21 +79,33 @@ class Renderer: NSObject, MTKViewDelegate {
         let commandBuffer = commandQueue.makeCommandBuffer()!
         let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
         
+        // Set the pipeline state
         renderEncoder.setRenderPipelineState(pipelineState)
         
+        // Bind the vertex buffer and draw
         if let vertexBuffer = vertexBuffer {
             renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-            renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexBuffer.length / (7 * MemoryLayout<Float>.size))
+            
+            // Draw the points
+            let vertexCount = vertexBuffer.length / (MemoryLayout<float4>.stride * 2)
+            renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: vertexCount)
         }
-        
         renderEncoder.endEncoding()
         commandBuffer.present(drawable)
         commandBuffer.commit()
     }
 
     func loadPDBData(atoms: [Atom]) {
-        let vertexData = atoms.flatMap { [$0.position.x, $0.position.y, $0.position.z, $0.color.x, $0.color.y, $0.color.z, $0.color.w] }
-        vertexBuffer = device.makeBuffer(bytes: vertexData, length: vertexData.count * MemoryLayout<Float>.size, options: [])
-        print("Vertex data loaded: \(vertexData)")
-    }
-}
+        // Convert the atoms to a flattened array of floats for position and color
+        let vertexData = atoms.flatMap { atom -> [Float] in
+                    [
+                        atom.position.x, atom.position.y, atom.position.z, 1.0, // Position
+                        atom.color.x, atom.color.y, atom.color.z, atom.color.w  // Color
+                    ]
+                }
+                
+                // Create the vertex buffer with the new data
+                vertexBuffer = device.makeBuffer(bytes: vertexData, length: vertexData.count * MemoryLayout<Float>.size, options: [])
+                print("Vertex data loaded: \(vertexData)")
+            }
+        }
